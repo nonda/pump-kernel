@@ -1,0 +1,11 @@
+{
+    "name": "nonda/kernel",
+    "description": "nonda pump php kernel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Nonda\\": ""
+        }
+    },
+    "require": {}
+}

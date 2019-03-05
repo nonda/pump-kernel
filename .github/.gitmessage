@@ -1,0 +1,11 @@
+[%type: nonda/%proj%issue]:
+
+#
+# GIT 提交模板：[[hotfix|feature]: [Fixed|Closed] nonda/%proj#xxx]: 提交内容信息
+#
+# %type:         标识提交类型的占位符
+# hotfix:         修复一个bug
+# feature:        添加一个特性
+# Fixed|Closed:   Fixed标识这个bug已经修复，Closed标识特性已经完成，如果带上这个标记，issue会自动关闭
+# nonda/%proj#xxx: %proj 仓库的 xxx issue 或者 pull request
+#
