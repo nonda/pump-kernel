@@ -19,7 +19,7 @@ class EventContextLogger extends ContextLogger
     public function getLogPath($logPath = '')
     {
         if (!$logPath) {
-           return $this->kernel->getConfig('logger.path')
+           return $this->kernel->getParameter('logger.path')
                 . DIRECTORY_SEPARATOR . 'event-context-'.date('Y-m-d').'.log';
         }
 

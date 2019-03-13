@@ -3,3 +3,4 @@ composer.phar
 composer.lock
 .idea
 *.swp
+.phpcomplete_extended

@@ -105,7 +105,7 @@ class Kernel
     /**
      * @var array
      */
-    protected $config;
+    protected $config = [];
 
     /**
      * 运行周期唯一标识
@@ -134,8 +134,8 @@ class Kernel
         /** @var array $lazyServiceDefinitions   lazy init services */
         $lazyServiceDefinitions = isset($config['services']) ? $config['services'] : [];
 
-        if (!isset($this->config['logger.path'])) {
-            $this->config['logger.path'] = sys_get_temp_dir();
+        if (!$this->getParameter('logger.path')) {
+            $this->setParameter('logger.path', sys_get_temp_dir());
         }
 
         $this->lazyInitServices($lazyServiceDefinitions);
@@ -191,6 +191,17 @@ class Kernel
         return isset($parameters[$name]) ? $parameters[$name] : null;
     }
 
+    public function setParameter($name, $value)
+    {
+        if (!isset($this->config['parameters'])) {
+            $this->config['parameters'] = [];
+        }
+
+        $this->config['parameters'][$name] = $value;
+
+        return $this;
+    }
+
     /**
      * Get Kernel's name
      *
@@ -208,7 +219,7 @@ class Kernel
      */
     public function isDebug()
     {
-        return !in_array($this->env, ['cron', 'production', 'farm']);
+        return !in_array($this->env, self::$prodEnv);
     }
 
     public function getEnv()

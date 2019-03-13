@@ -14,7 +14,7 @@ use Nonda\Logger\EventContextLogger;
  *
  * Default dispatcher for Kernel's event dispatcher
  *
- * You can override this by writing yourself's dispatcher when construct Kernel
+ * You can override this by writing yourself's dispatcher when call kernel's __construct()
  */
 class Dispatcher implements DispatcherInterface
 {
