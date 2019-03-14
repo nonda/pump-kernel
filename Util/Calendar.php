@@ -1,6 +1,7 @@
 <?php
 
  namespace Nonda\Util;
+
  /**
   * Created by PhpStorm.
   * User: huanjinglei
@@ -9,21 +10,14 @@
   * 摘自https://www.phpclasses.org/package/6848-PHP-Convert-dates-between-Gregorian-to-Hijri-calendars.html#information
   * 伊斯兰历 公历 转换查看工具：https://islam.51240.com/2018-10__islam/
   */
-
-
-
-
-
-
  class Calendar
  {
-
      public static function intPart($floatNum)
      {
-         if ($floatNum < -0.0000001)
-         {
+         if ($floatNum < -0.0000001) {
              return ceil($floatNum - 0.0000001);
          }
+
          return floor($floatNum + 0.0000001);
      }
 
@@ -34,25 +28,24 @@
          $array['Year'] = "";
 
          $format = strtoupper($format);
-         $format_Ar =  str_split($format);
-         $srcDate_Ar = str_split($date);
+         $formatAr =  str_split($format);
+         $srcDateAr = str_split($date);
+         $formatArCount = count($formatAr);
 
-         for ($i = 0;$i < count($format_Ar);$i++)
-         {
-
-             switch($format_Ar[$i])
-             {
+         for ($i = 0; $i < $formatArCount; $i++) {
+             switch($formatAr[$i]) {
                  case "D":
-                     $array['Day'] .= $srcDate_Ar[$i];
+                     $array['Day'] .= $srcDateAr[$i];
                      break;
                  case "M":
-                     $array['Month'] .= $srcDate_Ar[$i];
+                     $array['Month'] .= $srcDateAr[$i];
                      break;
                  case "Y":
-                     $array['Year'] .= $srcDate_Ar[$i];
+                     $array['Year'] .= $srcDateAr[$i];
                      break;
              }
          }
+
          return $array;
 
      }
@@ -100,7 +93,7 @@
             if ($m < 10)
                 $m = "0".$m;
         }
-        return $y."-".$m."-".$d;;
+        return $y."-".$m."-".$d;
     }
 
 

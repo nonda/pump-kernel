@@ -65,7 +65,9 @@ $kernel = new Nonda\Kernel\Kernel(
     'prod',
     [
         // 日志路径
-        'logger.path' => '/Users/admin/Code/composer',
+        'parameters' => [
+            'logger.path' => '/Users/admin/Code/composer',
+        ],
         'services' => [
             // 自定义Dispatcher，class实现Event\DispatcherInterface
             // 'kernel.event_dispatcher' => [

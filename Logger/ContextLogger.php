@@ -68,7 +68,7 @@ class ContextLogger
     public function getLogPath($logPath = '')
     {
         if (!$logPath) {
-            $logPath = $this->kernel->getConfig('logger.path')
+            $logPath = $this->kernel->getParameter('logger.path')
                 . DIRECTORY_SEPARATOR . 'context-'.date('Y-m-d').'.log';
         }
 
