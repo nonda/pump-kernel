@@ -163,7 +163,7 @@ class ToMars
      * @param $lng
      * @return array
      */
-    public function toMars($lat, $lng)
+    public function to($lat, $lng)
     {
         if (!$this->inChinaRegion($lat, $lng)) {
             return [
