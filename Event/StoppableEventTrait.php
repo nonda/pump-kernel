@@ -1,7 +1,7 @@
 <?php
 namespace Nonda\Event;
 
-trait StopableEventTrait
+trait StoppableEventTrait
 {
     /**
      * @var boolean

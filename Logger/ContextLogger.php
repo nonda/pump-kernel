@@ -61,7 +61,12 @@ class ContextLogger
      */
     public function isEnabled()
     {
-        // 暂时直接返回true
+        // TODO 读取配置开关
+        if ($this->kernel->isProdEnv()) {
+            return false;
+        }
+
+        // 默认开启
         return true;
     }
 
