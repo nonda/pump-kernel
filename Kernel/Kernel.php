@@ -115,12 +115,41 @@ class Kernel
     protected $contextUuid;
 
     /**
+     * 事件列表
+     *
+     * eventName => eventDesc
+     *
+     * @var array
+     */
+    protected $events = [];
+
+    /**
+     * 事件分组列表
+     *
+     * groupName => groupDesc
+     *
+     * @var array
+     */
+    protected $eventGroups = [];
+
+    /**
+     * 事件分组映射
+     *
+     * eventName => eventGroup
+     *
+     * @var array
+     */
+    protected $eventGroupMappings = [];
+
+    /**
      * Kernel constructor.
      *
      * @param string $appName           Kernel app's name
      * @param string $env               environment
      * @param array  $config            Kernel's Configuration
      * @param array  $services          init with existing services
+     *
+     * @throws BaseException
      */
     public function __construct($appName = 'Nonda', $env = 'dev', $config = [], $services = [])
     {
@@ -137,6 +166,9 @@ class Kernel
         if (!$this->getParameter('logger.path')) {
             $this->setParameter('logger.path', sys_get_temp_dir());
         }
+
+        // 把kernel默认的事件加到列表中
+        $this->addEvents(Events::$events, Events::$groups, Events::$eventGroups);
 
         $this->lazyInitServices($lazyServiceDefinitions);
 
@@ -827,5 +859,46 @@ class Kernel
         reset($arguments);
 
         return $arguments;
+    }
+
+    public function addEvent($eventName, $eventGroup = '', $eventDesc = '', $eventGroupDesc = '')
+    {
+        if (!$eventName) {
+            throw new BaseException('event name is empty', BaseException::INVALID_ARGUMENT);
+        }
+
+        if (!$eventGroup) {
+            $eventGroup = Events::GROUP_DEFAULT;
+        }
+
+        $this->events[$eventName] = $eventDesc;
+        $this->eventGroups[$eventGroup] = $eventGroupDesc;
+        $this->eventGroupMappings[$eventName] = $eventGroup;
+
+        return $this;
+    }
+
+    public function addEvents($events, $groups = [], $eventGroupMappings = [])
+    {
+        foreach ($events as $event => $eventDesc) {
+            $group = isset($eventGroupMappings[$event]) ? $eventGroupMappings[$event] : Events::GROUP_DEFAULT;
+            $groupDesc = '';
+
+            if (isset($groups[$group])) {
+                $groupDesc = $groups[$group];
+            }
+
+            if (!$groupDesc) {
+                if (isset($this->eventGroups[$group])) {
+                    $groupDesc = $this->eventGroups[$group];
+                } else {
+                    $groupDesc = '';
+                }
+            }
+
+            $this->addEvent($event, $group, $eventDesc, $groupDesc);
+        }
+
+        return $this;
     }
 }
