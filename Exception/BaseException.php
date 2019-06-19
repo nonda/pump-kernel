@@ -365,6 +365,9 @@ class BaseException extends RootException
     // 推送fwrite()返回broken错误
     const PUSH_WRITE_BROKEN = 677;
 
+    // 绑定经销商设备code验证错误
+    const DEALERSHIP_VERIFY_FAILED = 678;
+
     /**
      * couponcode exception code
      */
