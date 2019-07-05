@@ -11,6 +11,8 @@ use ZendService\Apple\Apns\Response\Message as ServiceResponse;
 
 class Apns extends BaseApns
 {
+    use PushAdapterTrait;
+
     /**
      * @var ServiceClient
      */

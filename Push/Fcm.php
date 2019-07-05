@@ -11,6 +11,8 @@ use ZendService\Google\Exception\RuntimeException as ServiceRuntimeException;
 
 class Fcm extends BaseGcm
 {
+    use PushAdapterTrait;
+
     protected $id = 'fcm';
 
     /**
