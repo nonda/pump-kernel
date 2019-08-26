@@ -9,16 +9,20 @@ class EventContextLogger extends ContextLogger
 {
     protected $type;
 
-    public function __construct(Kernel $kernel, FormatterInterface $formatter)
+    public function __construct(Kernel $kernel, FormatterInterface $formatter, $logPath = null)
     {
         $this->type = ContextLogger::TYPE_EVENT;
         $this->enabledConfigKey = 'event_context_enabled';
-        parent::__construct($kernel, $formatter);
+        parent::__construct($kernel, $formatter, $logPath);
     }
 
     public function getLogPath($logPath = '')
     {
         if (!$logPath) {
+            if ($this->logPath) {
+                return $this->logPath;
+            }
+
            return $this->kernel->getParameter('logger.path')
                 . DIRECTORY_SEPARATOR . 'event-context-'.date('Y-m-d').'.log';
         }
