@@ -44,13 +44,24 @@ class ContextLogger
      */
     protected $enabledConfigKey;
 
-    public function __construct(Kernel $kernel, FormatterInterface $formatter)
+    /**
+     * 日志输出的文件路径
+     *
+     * @var string
+     */
+    protected $logPath;
+
+    public function __construct(Kernel $kernel, FormatterInterface $formatter, $logPath = null)
     {
         $this->kernel = $kernel;
         $this->formatter = $formatter;
 
         if (!$this->enabledConfigKey) {
             $this->enabledConfigKey = 'default_context_enabled';
+        }
+
+        if ($logPath) {
+            $this->logPath = $logPath;
         }
     }
 
@@ -73,6 +84,10 @@ class ContextLogger
     public function getLogPath($logPath = '')
     {
         if (!$logPath) {
+            if ($this->logPath) {
+                return $this->logPath;
+            }
+
             $logPath = $this->kernel->getParameter('logger.path')
                 . DIRECTORY_SEPARATOR . 'context-'.date('Y-m-d').'.log';
         }
