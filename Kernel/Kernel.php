@@ -557,10 +557,12 @@ class Kernel
         if ($needSetTags) {
             $this->serviceTags[$id] = [];
 
-            foreach ($tags as $tag) {
-                if ($service instanceof \Closure) {
+            if ($service instanceof \Closure) {
+                foreach ($tags as $tag) {
                     $this->addCallbackTag($tag['name'], $service, $tag);
-                } else {
+                }
+            } else {
+                foreach ($tags as $tag) {
                     $this->addServiceTag($tag['name'], $id, $tag);
                 }
             }
@@ -595,6 +597,21 @@ class Kernel
         return true;
     }
 
+    /**
+     * Remove service instance
+     *
+     * @param string $id
+     *
+     * @return bool
+     */
+    public function removeServiceInstance($id)
+    {
+        if (isset($this->services[$id])) {
+            unset($this->services[$id]);
+        }
+
+        return true;
+    }
 
     /**
      * Return true if the given service is defined
