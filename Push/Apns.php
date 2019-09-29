@@ -114,7 +114,7 @@ class Apns extends BaseApns
         return $this->getOpenedServiceClient();
     }
 
-    public function forgetSServiceClient()
+    public function forgetServiceClient()
     {
         unset($this->openedClient);
 
