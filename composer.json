@@ -17,5 +17,8 @@
         "ramsey/uuid": "~3.0",
         "monolog/monolog": "~1.11",
         "sly/notification-pusher": "^2.3"
+    },
+    "suggest": {
+        "kreait/firebase-php": "Add Firebase support"
     }
 }
