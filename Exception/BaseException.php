@@ -23,7 +23,7 @@ use Throwable;
  *         640, 641, 642, 643, 644, 645, 646, 647, 648, 649,
  *         650, 651, 652, 653, 654, 655, 656, 657,
  *         661, 662, 663, 664, 665, 666,
- *         670, 671, 672, 673, 674, 675, 676, 677, 678,
+ *         670, 671, 672, 673, 674, 675, 676, 677, 678, 679,
  *         700, 701, 702, 703, 704, 705, 706, 707, 708,
  *         731, 732, 733,
  *         740, 741, 742,
@@ -107,6 +107,7 @@ use Throwable;
 * 676 - 没有关联的经销商
 * 677 - 推送(ios)fwrite()失败
 * 678 - 绑定经销商验证错误
+* 679 - grpc服务异常
 * 700 - coupon code is not exist
 * 701 - couponcode is illegal
 * 702 - couponcode consume failed
@@ -377,6 +378,9 @@ class BaseException extends RootException
 
     // 绑定经销商设备code验证错误
     const DEALERSHIP_VERIFY_FAILED = 678;
+
+    // grpc服务异常
+    const GRPC_ERROR = 679;
 
     /**
      * couponcode exception code
