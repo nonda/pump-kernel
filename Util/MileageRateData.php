@@ -24,7 +24,8 @@ class MileageRateData
             //'currency_symbol' => '$',
             'unit' => 'km',
             'rules_source' => [
-                'https://www.ato.gov.au/Business/Income-and-deductions-for-business/Deductions/Motor-vehicle-expenses/Claiming-motor-vehicle-expenses-as-a-sole-trader/Cents-per-kilometre-method/',
+                //'https://www.ato.gov.au/Business/Income-and-deductions-for-business/Deductions/Motor-vehicle-expenses/Claiming-motor-vehicle-expenses-as-a-sole-trader/Cents-per-kilometre-method/', //过期
+                'https://www.ato.gov.au/individuals/income-and-deductions/deductions-you-can-claim/vehicle-and-travel-expenses/car-expenses/#centsperkm',
                 // 6月中更新
             ],
             'rules' => [
@@ -42,7 +43,7 @@ class MileageRateData
                             'start_date' => '2015-01-01 00:00:00',
                             'end_date' => '2018-12-31 23:59:59',
                         ],
-                        '2019-01-01,2019-12-31' => [
+                        '2019-01-01,2020-12-31' => [
                             'deduction' => 0.68,
                             'limits' => [
                                 'long_range' => [
@@ -51,7 +52,7 @@ class MileageRateData
                                 ],
                             ],
                             'start_date' => '2019-01-01 00:00:00',
-                            'end_date' => '2019-12-31 23:59:59',
+                            'end_date' => '2020-12-31 23:59:59',
                         ],
                     ],
                 ],
@@ -65,14 +66,26 @@ class MileageRateData
             //'currency_symbol' => '$',
             'unit' => 'km',
             'rules_source' => [
-                'http://www.cra-arc.gc.ca/tx/bsnss/tpcs/pyrll/bnfts/tmbl/llwnc/rts-eng.html',
+                //'http://www.cra-arc.gc.ca/tx/bsnss/tpcs/pyrll/bnfts/tmbl/llwnc/rts-eng.html',
+                'https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/benefits-allowances/automobile/automobile-motor-vehicle-allowances/automobile-allowance-rates.html',
                 // 1月初更新
             ],
             'rules' => [
                 'Business' => [
                     'name' => 'Business',
                     'date_range' => [
-                        '2018-01-01,2019-12-31' => [
+                        '2019-01-01,2020-12-31' => [
+                            'deduction' => 0.58,
+                            'limits' => [
+                                'long_range' => [
+                                    '0,5000' => 0.58,
+                                    '5000,' => 0.52,
+                                ],
+                            ],
+                            'start_date' => '2019-01-01 00:00:00',
+                            'end_date' => '2020-12-31 23:59:59',
+                        ],
+                        '2018-01-01,2018-12-31' => [
                             'deduction' => 0.55,
                             'limits' => [
                                 'long_range' => [
@@ -81,7 +94,7 @@ class MileageRateData
                                 ],
                             ],
                             'start_date' => '2018-01-01 00:00:00',
-                            'end_date' => '2019-12-31 23:59:59',
+                            'end_date' => '2018-12-31 23:59:59',
                         ],
                         '2016-01-01,2017-12-31' => [
                             'deduction' => 0.54,
@@ -107,23 +120,24 @@ class MileageRateData
             //'currency_symbol' => '$',
             'unit' => 'km',
             'rules_source' => [
-                'http://www.ird.govt.nz/business-income-tax/expenses/mileage-rates/emp-deductions-allowances-mileage.html',
+                //'http://www.ird.govt.nz/business-income-tax/expenses/mileage-rates/emp-deductions-allowances-mileage.html',
+                'https://www.ird.govt.nz/topics/income-tax/day-to-day-expenses/claiming-vehicle-expenses/kilometre-rates-for-business-use-of-vehicles-2018-2019-income-year',
                 // 5月底更新
             ],
             'rules' => [
                 'Business' => [
                     'name' => 'Business',
                     'date_range' => [
-                        '2019-01-01,2019-12-31' => [
-                            'deduction' => 0.76,
+                        '2019-01-01,2020-12-31' => [
+                            'deduction' => 0.79,
                             'limits' => [
                                 'long_range' => [
-                                    '0,14000' => 0.76,
-                                    '14000,' => 0.26,
+                                    '0,14000' => 0.79,
+                                    '14000,' => 0.3,
                                 ],
                             ],
                             'start_date' => '2019-01-01 00:00:00',
-                            'end_date' => '2019-12-31 23:59:59',
+                            'end_date' => '2020-12-31 23:59:59',
                         ],
                         '2016-04-01,2018-12-31' => [
                             'deduction' => 0.73,
@@ -149,7 +163,7 @@ class MileageRateData
                 'Business' => [
                     'name' => 'Business',
                     'date_range' => [
-                        '2016-01-01,2019-12-31' => [
+                        '2016-01-01,2020-12-31' => [
                             'deduction' => 0.45,
                             'limits' => [
                                 'long_range' => [
@@ -159,7 +173,7 @@ class MileageRateData
                                 ],
                             ],
                             'start_date' => '2016-01-01 00:00:00',
-                            'end_date' => '2019-12-31 23:59:59',
+                            'end_date' => '2020-12-31 23:59:59',
                         ],
                     ],
                 ],
@@ -199,22 +213,22 @@ class MileageRateData
                             'start_date' => '2018-01-01 00:00:00',
                             'end_date' => '2018-12-31 23:59:59',
                         ],
-                        '2019-01-01,2019-12-31' => [
+                        '2019-01-01,2020-12-31' => [
                             'deduction' => 0.58,
                             'limits' => [],
                             'start_date' => '2019-01-01 00:00:00',
-                            'end_date' => '2019-12-31 23:59:59',
+                            'end_date' => '2020-12-31 23:59:59',
                         ],
                     ],
                 ],
                 'Charity' => [
                     'name' => 'Charity',
                     'date_range' => [
-                        '2016-01-01,2019-12-31' => [
+                        '2016-01-01,2020-12-31' => [
                             'deduction' => 0.14,
                             'limits' => [],
                             'start_date' => '2016-01-01 00:00:00',
-                            'end_date' => '2019-12-31 23:59:59',
+                            'end_date' => '2020-12-31 23:59:59',
                         ],
                     ],
                 ],
@@ -239,11 +253,11 @@ class MileageRateData
                             'start_date' => '2018-01-01 00:00:00',
                             'end_date' => '2018-12-31 23:59:59',
                         ],
-                        '2019-01-01,2019-12-31' => [
+                        '2019-01-01,2020-12-31' => [
                             'deduction' => 0.2,
                             'limits' => [],
                             'start_date' => '2019-01-01 00:00:00',
-                            'end_date' => '2019-12-31 23:59:59',
+                            'end_date' => '2020-12-31 23:59:59',
                         ],
                     ],
                 ],
@@ -268,11 +282,11 @@ class MileageRateData
                             'start_date' => '2018-01-01 00:00:00',
                             'end_date' => '2018-12-31 23:59:59',
                         ],
-                        '2019-01-01,2019-12-31' => [
+                        '2019-01-01,2020-12-31' => [
                             'deduction' => 0.2,
                             'limits' => [],
                             'start_date' => '2019-01-01 00:00:00',
-                            'end_date' => '2019-12-31 23:59:59',
+                            'end_date' => '2020-12-31 23:59:59',
                         ],
                     ],
                 ],
