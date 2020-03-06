@@ -11,15 +11,19 @@ namespace Nonda\Shopify;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * @method array get(string|array $uri, array $options = [])
  * @method array put(string|array $uri, array $options = [])
  * @method array post(string|array $uri, array $options = [])
  * @method array delete(string|array $uri, array $options = [])
+ * @method ShopifyIterator getIter(string|array $entity, callable $parseResponse, array $args = [], int $ttl = 86400, bool $flush = false)
+ * @method ResponseInterface getRaw(string|array $endpoint, array $options = [])
  */
 class ShopifyClient
 {
+    const API_VERSION = '2020-01';
     protected $url;
     protected $accessToken;
     protected $shopName;
@@ -55,9 +59,21 @@ class ShopifyClient
         $this->shopName = $shopName;
     }
 
+    protected function baseUriBuilder($endpoint)
+    {
+        return sprintf('https://%s:%s@%s/%s',
+            $this->apiKey,
+            $this->accessToken,
+            $this->shopName,
+            ltrim('/', $endpoint));
+    }
+
     protected function uriBuilder($resource)
     {
-        return "https://{$this->apiKey}:{$this->accessToken}@{$this->shopName}/admin/{$resource}";
+        return sprintf('%s/%s/%s',
+            $this->baseUriBuilder('/admin/api'),
+            self::API_VERSION,
+            $resource);
     }
 
     private function authHeaders()
@@ -86,7 +102,7 @@ class ShopifyClient
             self::$requestCount = [$now => 1];
         }
 
-        if (!in_array($method, ['get', 'post', 'put', 'delete'], true)) {
+        if (!in_array($method, ['get', 'post', 'put', 'delete', 'getIter', 'getRaw'], true)) {
             throw new \InvalidArgumentException('Method not valid');
         }
 
@@ -96,9 +112,10 @@ class ShopifyClient
 
         // $1 可以传string 'orders/$order_id/cancel.json?x=xx' 也可以传array ['orders', $order_id, 'cancel']
         if (is_string($args[0])) {
-            $resource = $args[0];
+            $entity = $resource = $args[0];
         } else {
-            $resource = implode('/', $args[0]).'.json';
+            $entity = implode('/', $args[0]);
+            $resource = $entity.'.json';
         }
 
         $uri = $this->uriBuilder($resource);
@@ -115,6 +132,14 @@ class ShopifyClient
             'msg' => '',
             'data' => [],
         ];
+
+        if ('getRaw' === $method) {
+            return $this->httpClient->get($this->baseUriBuilder($entity), $opts);
+        }
+
+        if ('getIter' === $method) {
+            return new ShopifyIterator($this, $entity, $args[1], $args[2] ?? [], $args[3] ?? 86400, $args[4] ?? false);
+        }
 
         try {
             $response = $this->httpClient->request($method, $uri, $opts);
