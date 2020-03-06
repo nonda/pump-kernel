@@ -81,9 +81,15 @@ class ShopifyDiscount
 
     public function getPriceRuleList()
     {
-        return $this->get([
-            'price_rules'
-        ]);
+        return $this->client->getIter(['price_rules'], function ($data) {
+            $responseBody = json_decode($data, true);
+
+            if (empty($responseBody['price_rules'])) {
+                return [];
+            }
+
+            return $responseBody['price_rules'];
+        });
     }
 
     /**
