@@ -65,7 +65,7 @@ class ShopifyClient
             $this->apiKey,
             $this->accessToken,
             $this->shopName,
-            ltrim('/', $endpoint));
+            ltrim($endpoint, '/'));
     }
 
     protected function uriBuilder($resource)
