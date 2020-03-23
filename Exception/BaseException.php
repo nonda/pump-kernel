@@ -25,7 +25,7 @@ use Throwable;
  *         661, 662, 663, 664, 665, 666,
  *         670, 671, 672, 673, 674, 675, 676, 677, 678, 679,
  *         700, 701, 702, 703, 704, 705, 706, 707, 708,
- *         731, 732, 733,
+ *         731, 732, 733, 734,
  *         740, 741, 742,
  *         800, 801, 802, 803, 804, 805, 806, 807,
  *     }, description="
@@ -120,6 +120,7 @@ use Throwable;
 * 731 - facebook validate error
 * 732 - user email already exists
 * 733 - app banner need version & platform
+* 734 - apple id invalid
 * 740 - voltage data is null
 * 741 - voltage data upload failed
 * 742 - can not share to yourself
@@ -422,6 +423,9 @@ class BaseException extends RootException
 
     // app banner 需要
     const APP_BANNER_NEED_PLATFORM_VERSION = 733;
+
+    // apple token 验证失败
+    const APPLE_TOKEN_INVALID = 734;
 
     /**
      * voltage data exception code
