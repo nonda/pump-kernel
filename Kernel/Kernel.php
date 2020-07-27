@@ -668,9 +668,9 @@ class Kernel
             $this->initService(
                 $id,
                 $this->lazyServiceDefinitions[$id]['class'],
-                @$this->lazyServiceDefinitions[$id]['arguments'],
-                @$this->lazyServiceDefinitions[$id]['tags'],
-                @$this->lazyServiceDefinitions[$id]['calls'],
+                empty($this->lazyServiceDefinitions[$id]['arguments']) ? [] : $this->lazyServiceDefinitions[$id]['arguments'],
+                empty($this->lazyServiceDefinitions[$id]['tags']) ? [] : $this->lazyServiceDefinitions[$id]['tags'],
+                empty($this->lazyServiceDefinitions[$id]['calls']) ? [] : $this->lazyServiceDefinitions[$id]['calls'],
                 $this->lazyServiceDefinitions
             );
         }
@@ -771,9 +771,9 @@ class Kernel
             $this->initService(
                 $definition,
                 $class,
-                @$params['arguments'],
-                @$params['tags'],
-                @$params['calls'],
+                empty($params['arguments']) ? [] : $params['arguments'],
+                empty($params['tags']) ? [] : $params['tags'],
+                empty($params['calls']) ? [] : $params['calls'],
                 $this->lazyServiceDefinitions
             );
         }
@@ -862,9 +862,9 @@ class Kernel
                     $relatedService = $this->initService(
                         $relatedServiceId,
                         $relatedServiceDef['class'],
-                        @$relatedServiceDef['arguments'],
-                        @$relatedServiceDef['tags'],
-                        @$relatedServiceDef['calls'],
+                        empty($relatedServiceDef['arguments']) ? [] : $relatedServiceDef['arguments'],
+                        empty($relatedServiceDef['tags']) ? [] : $relatedServiceDef['tags'],
+                        empty($relatedServiceDef['calls']) ? [] : $relatedServiceDef['calls'],
                         $definitions
                     );
                 }
