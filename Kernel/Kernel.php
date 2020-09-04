@@ -186,6 +186,11 @@ class Kernel
         }
     }
 
+    public function openDebugLog()
+    {
+        return !($this->isProdEnv() && !$this->getConfig('debug_log'));
+    }
+
     public function getContextUuid()
     {
         if (!$this->contextUuid) {
