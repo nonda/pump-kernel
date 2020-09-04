@@ -73,7 +73,7 @@ class ContextLogger
     public function isEnabled()
     {
         // TODO 读取配置开关
-        if ($this->kernel->isProdEnv()) {
+        if (!$this->kernel->openDebugLog()) {
             return false;
         }
 
